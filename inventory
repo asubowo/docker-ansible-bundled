@@ -4,18 +4,18 @@ localhost ansible_connection=local
 [database]
 
 [all:vars]
-admin_password='changeme'
+admin_password='password1234'
 
 pg_host=''
 pg_port=''
 
 pg_database='awx'
 pg_username='awx'
-pg_password='changeme'
+pg_password='password1234'
 
 rabbitmq_port=5672
 rabbitmq_vhost=tower
 rabbitmq_username=tower
-rabbitmq_password='changeme'
+rabbitmq_password='password1234'
 rabbitmq_cookie=rabbitmqcookie
 rabbitmq_use_long_name=false
