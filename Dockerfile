@@ -10,13 +10,13 @@ WORKDIR /opt
 ## https://releases.ansible.com/ansible-tower/setup-bundle/
 ## Feel free to switch versions around as you please
 ENV container docker
-ENV ANSIBLE_BUNDLE_VERSION 3.5.3-1.el7.tar.gz 
+ENV ANSIBLE_BUNDLE_VERSION 3.5.3-1.el7
 ENV PG_DATA /var/lib/postgresql/9.6/main
 ENV PROJECTS_DIR /var/lib/awx/PROJECTS_DIR
 ENV DEBIAN_FRONTEND "noninteractive"
 
 ## Get and download Tower 3.5.3, and Ansible Core 2.8.x
-ADD https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION} ansible-bundled.tar.gz
+ADD https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz ansible-bundled.tar.gz
 
 COPY inventory inventory
 COPY init-tower.sh /init-tower.sh
@@ -38,7 +38,7 @@ RUN mkdir -p /var/log/tower
 RUN tar xvf ansible-bundled.tar.gz \
     && rm -f ansible-bundled.tar.gz
 
-RUN cd /opt/ansible-bundled \
+RUN cd /opt/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION} \
     && ./setup.sh \
     && chmod +x /init-tower.sh
 
