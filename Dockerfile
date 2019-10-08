@@ -18,9 +18,6 @@ ENV DEBIAN_FRONTEND "noninteractive"
 ## Get and download Tower 3.5.3, and Ansible Core 2.8.x
 ADD https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz ansible-bundled.tar.gz
 
-COPY inventory inventory
-COPY init-tower.sh /init-tower.sh
-
 RUN apt-get -q update \
     && apt-get -yq upgrade \
     && apt-get -y install \
@@ -37,6 +34,9 @@ RUN mkdir -p /var/log/tower
 
 RUN tar xvf ansible-bundled.tar.gz \
     && rm -f ansible-bundled.tar.gz
+
+COPY inventory inventory
+COPY init-tower.sh /init-tower.sh
 
 RUN cd /opt/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION} \
     && ./setup.sh \
