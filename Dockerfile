@@ -38,9 +38,9 @@ RUN mkdir -p /var/log/tower
 RUN tar xvf ansible-bundled.tar.gz \
     && rm -f ansible-bundled.tar.gz
 
-WORKDIR /opt/ansible-bundled
-
-RUN ./setup.sh && chmod +x /init-tower.sh
+RUN cd /opt/ansible-bundled \
+    && ./setup.sh \
+    && chmod +x /init-tower.sh
 
 ## Expose these volumes to the container for mounting
 VOLUME ["/sys/fs/cgroup", "${PG_DATA}", "${PROJECTS_DIR}", "/license_and_certs"]
