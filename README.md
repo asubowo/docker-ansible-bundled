@@ -1,6 +1,11 @@
 # docker-ansible-bundled
 Ansible Core 2.8.x and Tower 3.5.3 for el7 in a Docker container
 
+# Run immediately (no clone)
+```
+docker pull asubowo/docker-ansible-bundled
+```
+
 # Build
 1. Change directory to directory root where the contents of this repository are located
   ```
@@ -47,5 +52,7 @@ If you're running CentOS 7+ as your base image, you may want to disable Bubblewr
 
 # Login
 URL: https://localhost:443
+
 Username: admin
+
 Password: changeme
