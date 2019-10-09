@@ -14,6 +14,9 @@ ENV ANSIBLE_BUNDLE_VERSION 3.5.3-1.el7
 ENV PG_DATA /var/lib/postgresql/9.6/main
 ENV PROJECTS_DIR /var/lib/awx/PROJECTS_DIR
 ENV DEBIAN_FRONTEND "noninteractive"
+ENV LC_ALL "en_US.UTF-8"
+ENV LANGUAGE "en_EN:en"
+ENV LANG "en_US.UTF-8"
 
 COPY inventory inventory
 COPY init-tower.sh /init-tower.sh
@@ -32,7 +35,10 @@ RUN apt-get -q update \
                   python-pip \
                   sudo \
                   apt-transport-https \
-    && pip install ansible-tower-cli
+    && pip install ansible-tower-cli \
+    && locale-gen "en_US.UTF-8" \
+	&& echo "locales	locales/default_environment_locale	select	en_US.UTF-8" | debconf-set-selections \
+	&& dpkg-reconfigure locales
 
 ## Create log directory
 RUN mkdir -p /var/log/tower        
