@@ -25,25 +25,25 @@ COPY init-tower.sh /init-tower.sh
 ADD https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz
 
 ## Update packages
-RUN apt-get -q update \
-    && apt-get -yq upgrade \
-    && apt-get -y install \
-                  locales \
-                  gnupg2 \
-                  gnupg \
-                  curl \
-                  libpython2.7 \
-                  python \
-                  python-pip \
-                  sudo \
-                  wget \
-                  ca-certificates \
-                  apt-transport-https \
-    && pip install ansible-tower-cli \
-    && locale-gen "en_US.UTF-8" \
-	&& echo "locales	locales/default_environment_locale	select	en_US.UTF-8" | debconf-set-selections \
-	&& dpkg-reconfigure locales
-
+RUN apt-get -qq update \
+        && apt-get -yqq upgrade \
+        && apt-get -yqq install \
+                        locales \
+                        gnupg2 \
+                        gnupg \
+                        libpython2.7 \
+                        python \
+                        python-pip \
+                        ca-certificates \
+                        debconf \
+                        apt-transport-https \
+                        sudo \
+                        curl \
+                        wget \               
+        && locale-gen "en_US.UTF-8" \
+        && echo "locales        locales/default_environment_locale      select  en_US.UTF-8" | debconf-set-selections \
+        && dpkg-reconfigure locales
+        
 ## Create log directory
 RUN mkdir -p /var/log/tower        
 
