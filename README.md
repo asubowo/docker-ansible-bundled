@@ -1,3 +1,5 @@
+![build status](https://img.shields.io/docker/cloud/build/asubowo/docker-ansible-bundled?style=for-the-badge) ![build type](https://img.shields.io/docker/automated/asubowo/docker-ansible-bundled?style=for-the-badge) ![docker pulls](https://img.shields.io/docker/pulls/asubowo/docker-ansible-bundled?style=for-the-badge)
+
 # docker-ansible-bundled
 Ansible Core 2.8.x and Tower 3.5.3 for el7 in a Docker container
 
