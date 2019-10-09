@@ -29,11 +29,15 @@ RUN apt-get -q update \
     && apt-get -yq upgrade \
     && apt-get -y install \
                   locales \
+                  gnupg2 \
+                  gnupg \
                   curl \
                   libpython2.7 \
                   python \
                   python-pip \
                   sudo \
+                  wget \
+                  ca-certificates \
                   apt-transport-https \
     && pip install ansible-tower-cli \
     && locale-gen "en_US.UTF-8" \
