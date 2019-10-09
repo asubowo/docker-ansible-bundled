@@ -15,9 +15,13 @@ ENV PG_DATA /var/lib/postgresql/9.6/main
 ENV PROJECTS_DIR /var/lib/awx/PROJECTS_DIR
 ENV DEBIAN_FRONTEND "noninteractive"
 
-## Get and download Tower 3.5.3, and Ansible Core 2.8.x
-ADD https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz ansible-bundled.tar.gz
+COPY inventory inventory
+COPY init-tower.sh /init-tower.sh
 
+## Get and download Tower 3.5.3, and Ansible Core 2.8.x
+ADD https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz
+
+## Update packages
 RUN apt-get -q update \
     && apt-get -yq upgrade \
     && apt-get -y install \
@@ -30,13 +34,13 @@ RUN apt-get -q update \
                   apt-transport-https \
     && pip install ansible-tower-cli
 
+## Create log directory
 RUN mkdir -p /var/log/tower        
 
-RUN tar xvf ansible-bundled.tar.gz \
-    && rm -f ansible-bundled.tar.gz
-
-COPY inventory inventory
-COPY init-tower.sh /init-tower.sh
+## Extract bundled zip
+RUN tar xvf ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz \
+    && rm -f ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}.tar.gz \
+    && mv inventory ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION}/inventory
 
 RUN cd /opt/ansible-tower-setup-bundle-${ANSIBLE_BUNDLE_VERSION} \
     && ./setup.sh \
