@@ -1,7 +1,7 @@
 ![build status](https://img.shields.io/docker/cloud/build/asubowo/docker-ansible-bundled?style=for-the-badge) ![build type](https://img.shields.io/docker/cloud/automated/asubowo/docker-ansible-bundled?style=for-the-badge) ![docker pulls](https://img.shields.io/docker/pulls/asubowo/docker-ansible-bundled?style=for-the-badge)
 
 # docker-ansible-bundled
-Ansible Core 2.8.x and Tower 3.6.0 for el7 in a Docker container
+Ansible Core 2.8.x and Tower 3.5.3 for el7 in a Docker container
 
 # Run immediately (no clone)
 ```
@@ -18,7 +18,7 @@ docker pull asubowo/docker-ansible-bundled
   ```
 2. Run the build
   ```
-  docker build . -t asubowo/ansible-bundled:3.6.0
+  docker build . -t asubowo/ansible-bundled:3.5.3
   ```
   
 # Create a Tower DB volume (optional)
