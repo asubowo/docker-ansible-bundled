@@ -7,8 +7,12 @@ Ansible Core 2.8.x and Tower 3.5.3 for el7 in a Docker container
 ```
 docker pull asubowo/docker-ansible-bundled
 ```
+Or use
+```
+docker pull asubowo/docker-ansible-bundled:3.5.3
+```
 
-# Build
+# Manual build
 1. Change directory to directory root where the contents of this repository are located
   ```
   docker-ansible-bundled
@@ -50,7 +54,7 @@ docker run -d -p 443:443 ~/ansible_projects:var/lib/awx/projects -v tower-data:/
 ```
 
 # Appendix
-If you're running CentOS 7+ as your base image, you may want to disable Bubblewrap. Otherwise you may see namespace issues when attempting to run jobs in Tower. To do this, log into Tower, navigate to *Settings > Jobs* and disable "Job Isolation"
+If you're running CentOS 7+ as your host OS image, you may want to disable Bubblewrap. Otherwise you may see namespace issues when attempting to run jobs in Tower. To do this, log into Tower, navigate to *Settings > Jobs* and disable "Job Isolation"
 
 # Login
 URL: https://localhost:443
